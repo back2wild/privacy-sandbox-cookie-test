@@ -1,0 +1,21 @@
+{
+  "name": "privacy-sandbox-cookie-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon -e js,html src/index.js",
+    "start": "cross-env NODE_ENV=production node src/index.js"
+  },
+  "keywords": [],
+  "author": "back2wild",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.4",
+    "cross-env": "^6.0.3",
+    "express": "^4.17.1"
+  }
+}

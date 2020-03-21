@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <title></title>
+  <style>
+    body {
+      padding: 20px 10px;
+      font-family: sans-serif;
+    }
+    body, textarea, code, button, input, label {
+      font-size: 14px;
+    }
+    button {
+      padding: 10px 20px;
+    }
+    pre {
+      font-family: sans-serif;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 style="font-size: 20px; font-weight: bold;">Chrome 80 cookie test</h1>
+  <code style="word-wrap: break-word;">
+    Please use the browser inspector to see the cookies of requests
+  </code>
+  <hr/>
+  <button class="btn btn-info" onclick="location.reload(true)">Reload</button>
+  <div>
+    <code id="hrefEl" style="word-break: normal; display: none;"></code>
+  </div>
+  <hr />
+  <div id="app">
+    <b>Resources:</b>
+    <br/>
+    <div style="display: flex;">
+      <div>
+        <img id="img_strict" src="" style="width: 80px;"/><br/>
+        <div>Strict</div>
+      </div>
+      <div style="flex: 1;"></div>
+      <div>
+        <img id="img_lax" src="" style="width: 80px;"/><br/>
+        <div>Lax</div>
+      </div>
+      <div style="flex: 1;"></div>
+      <div>
+        <img id="img_none" src="" style="width: 80px;"/><br/>
+        <div>None</div>
+      </div>
+      <div style="flex: 1;"></div>
+      <div>
+        <img id="img_noneNonSecure" src="" style="width: 80px;"/><br/>
+        <div>None<br/>non-Secure</div>
+      </div>
+    </div>
+    <hr />
+    <div>
+      <b>Links:</b>
+      <br/>
+      <a id="imgLink_strict" href="" target="_blank">Strict</a>
+      &nbsp;&nbsp;|&nbsp;&nbsp;
+      <a id="imgLink_lax" href="" target="_blank">Lax</a>
+      &nbsp;&nbsp;|&nbsp;&nbsp;
+      <a id="imgLink_none" href="" target="_blank">None</a>
+      &nbsp;&nbsp;|&nbsp;&nbsp;
+      <a id="imgLink_noneNonSecure" href="" target="_blank">None-nonSecure</a>
+    </div>
+  </div>
+  <hr/>
+  <div>
+  </div>
+  <script>
+    document.getElementById('hrefEl').innerHTML = window.location.host;
+  </script>
+<script>
+var domainName1 = '{{domainName1}}';
+var domainName2 = '{{domainName2}}';
+
+document.getElementById('img_strict').setAttribute('src', 'https://' + domainName1 + '/imgs/bicycle/strict');
+document.getElementById('img_lax').setAttribute('src', 'https://' + domainName1 + '/imgs/bicycle/lax');
+document.getElementById('img_none').setAttribute('src', 'https://' + domainName1 + '/imgs/bicycle/none');
+document.getElementById('img_noneNonSecure').setAttribute('src', 'https://' + domainName1 + '/imgs/bicycle/none-nonsecure');
+
+document.getElementById('imgLink_strict').setAttribute('href', 'https://' + domainName1 + '/imgs/bicycle/strict');
+document.getElementById('imgLink_lax').setAttribute('href', 'https://' + domainName1 + '/imgs/bicycle/lax');
+document.getElementById('imgLink_none').setAttribute('href', 'https://' + domainName1 + '/imgs/bicycle/none');
+document.getElementById('imgLink_noneNonSecure').setAttribute('href', 'https://' + domainName1 + '/imgs/bicycle/none-nonsecure');
+
+setTimeout(() => {
+  window.fetch('https://' + domainName1 + '/imgs/bicycle/strict', {
+    credentials: 'include',
+  });
+  window.fetch('https://' + domainName1 + '/imgs/bicycle/lax', {
+    credentials: 'include',
+  });
+  window.fetch('https://' + domainName1 + '/imgs/bicycle/none', {
+    credentials: 'include',
+  });
+  window.fetch('https://' + domainName1 + '/imgs/bicycle/none-nonsecure', {
+    credentials: 'include',
+  });
+}, 1000);
+</script>
+</body>
+
+</html>
